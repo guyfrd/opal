@@ -24,7 +24,7 @@ VALID_REPO_REMOTE_URL_HTTPS = \
     "https://github.com/authorizon/fastapi_websocket_pubsub.git"
 
 VALID_REPO_REMOTE_URL_SSH = \
-    "git@github.com:authorizon/fastapi_websocket_pubsub.git"
+    "git@github.com:guyfrd/clone_test.git"
 
 INVALID_REPO_REMOTE_URL = "git@github.com:authorizon/no_such_repo.git"
 
@@ -108,12 +108,11 @@ def test_repo_cloner_clone_remote_repo_ssh_url(tmp_path):
     running_in_ci = confi.bool("CI", False) or confi.bool("GITHUB_ACTIONS", False)
 
     if running_in_ci:
-        with pytest.raises(GitFailed):
-            # result =
-            RepoCloner(
-                repo_url=VALID_REPO_REMOTE_URL_SSH,
-                clone_path=target_path
-            ).clone()
+        # result =
+        RepoCloner(
+            repo_url=VALID_REPO_REMOTE_URL_SSH,
+            clone_path=target_path
+        ).clone()
     else:
         result = RepoCloner(
             repo_url=VALID_REPO_REMOTE_URL_SSH,
